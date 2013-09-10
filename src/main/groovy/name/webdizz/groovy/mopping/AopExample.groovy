@@ -8,7 +8,7 @@ class AopExample implements GroovyInterceptable {
 
     def invokeMethod(String name, args){
 	System.out.println "Invoke method called for ${name}"
-	String result = AopExample.metaClass.getMetaMethod(name).invoke this
-	result + ' world!'
+	String result = AopExample.metaClass.invokeMethod(this, name)
+	result + ' world!'	
     }
 }
