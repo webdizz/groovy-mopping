@@ -14,6 +14,6 @@ define 'groovy-mopping' do
   project.version = VERSION_NUMBER
   project.group = GROUP
 
-  test.compile.with 'org.spockframework:spock-core:jar:0.7-groovy-2.0'
+  compile.with 'org.spockframework:spock-core:jar:0.7-groovy-2.0'
 
 end
