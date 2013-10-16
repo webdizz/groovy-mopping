@@ -15,5 +15,5 @@ define 'groovy-mopping' do
   project.group = GROUP
 
   compile.with 'org.spockframework:spock-core:jar:0.7-groovy-2.0'
-
+  package :jar
 end
