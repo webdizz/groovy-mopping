@@ -1,4 +1,4 @@
-package name.webdizz.groovy.mopping.ast
+package name.webdizz.groovy.mopping.ast.transformation
 
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
@@ -13,16 +13,6 @@ import org.codehaus.groovy.control.SourceUnit
 import org.codehaus.groovy.transform.ASTTransformation
 import org.codehaus.groovy.transform.GroovyASTTransformation
 
-class SuperVisor {
-    static void audit(String name, args) {
-        println '================<<'
-        println "Auditing $name with args: $args"
-    }
-
-    static void auditAfter() {
-        println '================>>'
-    }
-}
 @GroovyASTTransformation(phase = CompilePhase.SEMANTIC_ANALYSIS)
 class SuperVisorTransformer implements ASTTransformation {
 

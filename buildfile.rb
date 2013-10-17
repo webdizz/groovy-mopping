@@ -14,6 +14,11 @@ define 'groovy-mopping' do
   project.version = VERSION_NUMBER
   project.group = GROUP
 
-  compile.with 'org.spockframework:spock-core:jar:0.7-groovy-2.0'
+  define 'ast-transformer' do
+    compile.with 'org.spockframework:spock-core:jar:0.7-groovy-2.0'
+    package :jar
+  end
+
+  compile.with 'org.spockframework:spock-core:jar:0.7-groovy-2.0', project('ast-transformer')
   package :jar
 end

@@ -1,1 +1,2 @@
-name.webdizz.groovy.mopping.ast.SuperVisorTransformer
+name.webdizz.groovy.mopping.ast.transformation.SuperVisorTransformer
+name.webdizz.groovy.mopping.ast.transformation.TransactionableTransformer

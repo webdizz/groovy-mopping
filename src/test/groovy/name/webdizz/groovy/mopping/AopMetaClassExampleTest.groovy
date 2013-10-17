@@ -2,20 +2,6 @@ package name.webdizz.groovy.mopping
 
 import spock.lang.Specification
 
-class AopImperceptibleExampleTest extends Specification {
-
-    def 'should append world!'() {
-        expect:
-        'hello world!' == new AopImperceptibleExample().hello()
-    }
-
-    def 'should throw MissingMethodException'() {
-        when:
-        new AopImperceptibleExample().noSuchMethod()
-        then:
-        thrown(MissingMethodException)
-    }
-}
 
 class AopMetaClassExampleTest extends Specification {
 
