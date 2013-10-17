@@ -11,6 +11,7 @@ class AstClassLoader extends GroovyClassLoader {
     protected CompilationUnit createCompilationUnit(CompilerConfiguration config, CodeSource codeSource) {
         CompilationUnit compilationUnit = super.createCompilationUnit(config, codeSource)
         compilationUnit.addPhaseOperation(new AstInterceptionOperation(), Phases.CONVERSION)
+        compilationUnit.addPhaseOperation(new AstInjectionOperation(), Phases.CONVERSION)
         return compilationUnit
     }
 }

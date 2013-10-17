@@ -1,4 +1,4 @@
-package name.webdizz.groovy.mopping.ast;
+package name.webdizz.groovy.mopping.ast.injection;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

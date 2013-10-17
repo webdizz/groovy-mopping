@@ -1,4 +1,4 @@
-package name.webdizz.groovy.mopping.ast
+package name.webdizz.groovy.mopping.ast.injection
 
 class AccountProcessor {
 
@@ -6,9 +6,11 @@ class AccountProcessor {
 
     void debit(Long amount) {
         println "Debit: $amount"
+        balance = balance + amount
     }
 
     void credit(Long amount) {
         println "Credit $amount"
+        balance = balance - amount
     }
 }
