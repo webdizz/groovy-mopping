@@ -1,15 +1,24 @@
 package name.webdizz.groovy.mopping
 
-Long cardNumber = 1214131415161527
+import spock.lang.Specification
 
-emc = new ExpandoMetaClass(Long)
-emc.getAsCreditCardNumber = {->
-    String asString = delegate.toString()
-    if (asString.size() == 16) {
-        "${asString[0..3]}-${asString[4..7]}-${asString[8..11]}-${asString[12..15]}"
+class InjectionWithClassInstanceTest extends Specification {
+
+    def 'should format credit card'() {
+        setup:
+        Long cardNumber = 1214131415161527
+
+        def emc = new ExpandoMetaClass(Long)
+        emc.getAsCreditCardNumber = {->
+            String asString = delegate.toString()
+            if (asString.size() == 16) {
+                "${asString[0..3]}-${asString[4..7]}-${asString[8..11]}-${asString[12..15]}"
+            }
+        }
+        emc.initialize()
+        cardNumber.metaClass = emc
+
+        expect:
+        cardNumber.asCreditCardNumber == '1214-1314-1516-1527'
     }
 }
-emc.initialize()
-cardNumber.metaClass = emc
-
-println cardNumber.asCreditCardNumber

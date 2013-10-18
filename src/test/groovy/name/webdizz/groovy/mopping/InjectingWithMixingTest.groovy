@@ -1,5 +1,7 @@
 package name.webdizz.groovy.mopping
 
+import spock.lang.Specification
+
 class MixableCreditCardFormatter {
     def getAsCreditCardNumber() {
         String asString = this.toLong().toString()
@@ -8,8 +10,15 @@ class MixableCreditCardFormatter {
         }
     }
 }
-Long cardNumber = 1214131415161527
 
-cardNumber.metaClass.mixin MixableCreditCardFormatter
+class InjectingWithMixingTest extends Specification {
 
-println cardNumber.asCreditCardNumber
+    def 'should get formatted credit card number'() {
+        Long cardNumber = 1214131415161527
+        cardNumber.metaClass.mixin MixableCreditCardFormatter
+        expect:
+        cardNumber.asCreditCardNumber == '1214-1314-1516-1527'
+    }
+}
+
+

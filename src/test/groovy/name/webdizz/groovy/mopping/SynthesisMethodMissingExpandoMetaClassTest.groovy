@@ -1,20 +1,31 @@
 package name.webdizz.groovy.mopping
 
+import spock.lang.Specification
+
 class AnotherProcessor {
 
 }
 
-Processor.metaClass.methodMissing = { String name, args ->
-    println 'Synthesising new method'
-    def methodImpl = { Object[] vargs ->
-        println "Processing '${name}' with: ${vargs}"
-    }
-    Processor.metaClass."$name" = methodImpl
-    methodImpl(args)
-}
-Processor processor = new Processor()
-processor.processString('Groovy')
-processor.processString('MOPping')
+class SynthesisMethodMissingExpandoMetaClass extends Specification {
 
-processor.processInteger(1)
-processor.processInteger(4)
+    def 'should test'() {
+        setup:
+        Processor.metaClass.methodMissing = { String name, args ->
+            println 'Synthesising new method'
+            def methodImpl = { Object[] vargs ->
+                println "Processing '${name}' with: ${vargs}"
+                vargs
+            }
+            Processor.metaClass."$name" = methodImpl
+            methodImpl(args)
+        }
+        Processor processor = new Processor()
+
+        expect:
+        processor.processString('Groovy') == ['Groovy']
+        processor.processString('MOPping') == ['MOPping']
+
+        processor.processInteger(1) == [1]
+        processor.processInteger(4) == [4]
+    }
+}
