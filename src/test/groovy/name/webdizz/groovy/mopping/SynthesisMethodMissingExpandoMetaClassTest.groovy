@@ -10,16 +10,16 @@ class SynthesisMethodMissingExpandoMetaClass extends Specification {
 
     def 'should test'() {
         setup:
-        Processor.metaClass.methodMissing = { String name, args ->
+        AnotherProcessor.metaClass.methodMissing = { String name, args ->
             println 'Synthesising new method'
             def methodImpl = { Object[] vargs ->
                 println "Processing '${name}' with: ${vargs}"
                 vargs
             }
-            Processor.metaClass."$name" = methodImpl
+            AnotherProcessor.metaClass."$name" = methodImpl
             methodImpl(args)
         }
-        Processor processor = new Processor()
+        AnotherProcessor processor = new AnotherProcessor()
 
         expect:
         processor.processString('Groovy') == ['Groovy']
